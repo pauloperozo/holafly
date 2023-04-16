@@ -70,7 +70,7 @@ class CommonPeople extends AbstractPeople {
 
         const result = swapiFunctions.getWeightOnPlanet( this.mass, planet.getGravity() )
 
-        if(result) return { success: true, getWeightOnPlanet: { peopelId:this.id,homeworldId:Number(this.homeworld_id),planetId,result } }
+        if(result) return { success: true, getWeightOnPlanet: { peopelId:this.id,homeworldId:Number(this.homeworlId),planetId,result } }
         else  throw new Error(`Error Calculando Peso Personaje params: ${ JSON.stringify({peopelId:this.id,planetId}) }`)  
     }
 
