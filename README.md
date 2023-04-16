@@ -67,3 +67,15 @@ El presente código despliega un servidor node.js/express sobre el que se busca 
 
 
 Adicionalmente a estos endpoints, se requiere ampliar el paquete `People` con las clases y funciones que sean necesarias para cubrir el caso de que el formato del objeto retornado por la SWAPI sea en idioma Wookiee.
+
+## Desarrollo De La Prueba
+Info: `Dev: Paulo Perozo, Git: https://github.com/pauloperozo, Fecha: 15/04/2023` 
+Este fragmento de texto resumen los ajustes aplicados al proyecto, así como su justificación.  
+
+> - Controller: Crear un archivo controlador de ruta para implementar los llamados al api (clear code).
+> - Middlewares : Ajustar los middlewares necesarios para capturar los logs y guardarlos en db.
+> - Entidades: Desarrollar la  lógica de negocio para las entidades People y Planet.
+> - Extender: Crear y desarrollar la entidad wookieePeople que extiende de una clase abstracta Peopel.
+> - GIT: Documentar los cambios aplicados y aplicar el formato sugerido por la prueba.
+> - Share: Compartir el link del repositorio con su debido reclutador, para una posterior verificación.
+> - Nota: ¿Existe un lenguaje llamado wookiee ?  jajaja con alfabeto y todo!!.
