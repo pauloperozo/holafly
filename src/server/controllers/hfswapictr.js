@@ -14,7 +14,20 @@ const test = async ( req , res, app ) => {
 //////////////////////////////////////////////////////////////////////////////
 const getPeople = async ( req , res ) => { }
 //////////////////////////////////////////////////////////////////////////////
-const getPlanet = async ( req , res ) => { }
+const getPlanet = async ( req , res ) => {
+
+    const { id } = req.params
+
+    const { Planet } = require('../../app/Planet')
+    const planet = new Planet( id )
+    await planet.init()
+    
+    if( !planet.name )return res.status(400).json( {message:"Planeta No Existente..."} )
+
+    const response =  { name: planet.getName(), gravity: planet.getGravity() }
+    return res.json( response ) 
+
+}
 //////////////////////////////////////////////////////////////////////////////
 const getWeightOnPlanetRandom = async ( req , res ) => { }
 //////////////////////////////////////////////////////////////////////////////
