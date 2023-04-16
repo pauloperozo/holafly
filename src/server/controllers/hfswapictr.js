@@ -49,7 +49,28 @@ const getPlanet = async ( req , res ) => {
 
 }
 //////////////////////////////////////////////////////////////////////////////
-const getWeightOnPlanetRandom = async ( req , res ) => { }
+const getWeightOnPlanetRandom = async ( req , res ) => {
+
+    const RamdomId = ( min, max ) => Math.floor( Math.random() * (max - min + 1) + min) 
+
+    const PeopelId = RamdomId( 1,82 ) /* Numero De Personas Mostrada Api */
+    const PlanetId = RamdomId( 1,60 ) /* Numero De Planeta Mostrada Api */
+
+
+    const { peopleFactory } = require('../../app/People')
+    const people = await peopleFactory( PeopelId,"")
+    if( !people.name ) return res.status(400).json( {message:"Personaje No Existente..."} )
+
+    try {
+
+        const result = await people.getWeightOnPlanet( PlanetId )
+        return res.json( result.getWeightOnPlanet ) 
+
+    } catch (error) {
+        return res.status(400).json( { message:error.message } )     
+    }
+
+}
 //////////////////////////////////////////////////////////////////////////////
 const getLogs = async ( req , res , app ) => {
 
