@@ -12,7 +12,27 @@ const test = async ( req , res, app ) => {
 
 }
 //////////////////////////////////////////////////////////////////////////////
-const getPeople = async ( req , res ) => { }
+const getPeople = async ( req , res ) => {
+
+    const { id } = req.params
+
+    const { peopleFactory } = require('../../app/People')
+    const wookiee = _isWookieeFormat( req )
+
+    const people = await peopleFactory( id, wookiee ? "wookiee":"")
+    if( !people.name ) return res.status(400).json( {message:"Personaje No Existente..."} )
+
+    const response = {
+        name : people.getName(), 
+        mass : people.getMass(),
+        height : people.getHeight(),
+        homeworldName : people.getHomeworldName(),
+        homeworldId : people.getHomeworlId(),
+    }
+
+    return res.status(200).json( response ) 
+
+}
 //////////////////////////////////////////////////////////////////////////////
 const getPlanet = async ( req , res ) => {
 
