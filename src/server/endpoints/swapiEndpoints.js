@@ -1,36 +1,30 @@
+//////////////////////////////////////////////////////////////////////////////
+const _wrape = ( handler, app ) => {
 
-const _isWookieeFormat = (req) => {
-    if(req.query.format && req.query.format == 'wookiee'){
-        return true;
+    return async ( req , res ) => {
+
+        try {
+          await handler(req, res, app )
+        } 
+        catch (error) {
+          console.error( error )
+          res.status(500).send('Internal Server Error')
+        }
+
     }
-    return false;
 }
+//////////////////////////////////////////////////////////////////////////////
+const applySwapiEndpoints = ( server, app ) => {
 
+    const { test, getPeople, getPlanet, getWeightOnPlanetRandom,getLogs } = require('../controllers/hfswapictr')
 
-const applySwapiEndpoints = (server, app) => {
-
-    server.get('/hfswapi/test', async (req, res) => {
-        const data = await app.swapiFunctions.genericRequest('https://swapi.dev/api/', 'GET', null, true);
-        res.send(data);
-    });
-
-    server.get('/hfswapi/getPeople/:id', async (req, res) => {
-        res.sendStatus(501);
-    });
-
-    server.get('/hfswapi/getPlanet/:id', async (req, res) => {
-        res.sendStatus(501);
-    });
-
-    server.get('/hfswapi/getWeightOnPlanetRandom', async (req, res) => {
-        res.sendStatus(501);
-    });
-
-    server.get('/hfswapi/getLogs',async (req, res) => {
-        const data = await app.db.logging.findAll();
-        res.send(data);
-    });
+    server.get('/hfswapi/test', _wrape( test, app ))
+    server.get('/hfswapi/getPeople/:id([0-9]+)', getPeople )
+    server.get('/hfswapi/getPlanet/:id([0-9]+)', getPlanet )
+    server.get('/hfswapi/getWeightOnPlanetRandom', getWeightOnPlanetRandom )
+    server.get('/hfswapi/getLogs', _wrape( getLogs, app ) )
 
 }
-
-module.exports = applySwapiEndpoints;
+//////////////////////////////////////////////////////////////////////////////
+module.exports = applySwapiEndpoints
+//////////////////////////////////////////////////////////////////////////////
