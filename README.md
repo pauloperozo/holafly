@@ -2,7 +2,7 @@
 
 ## Instrucciones
 
-_Todas las instrucciones parten de la premisa de que el aspirante tiene una versión de node.js instalada en su sistema._
+_Todas las instrucciones parten de la premisa de que el aspirante tiene una versión de nodejs instalada en su sistema._
 
 - Clonar este repositorio y realizar sobre el clon todos los cambios pedidos en el enunciado.
 - Instalar las librerias externas mediante `npm install` y ejecutar el servidor mediante `npm run dev`
